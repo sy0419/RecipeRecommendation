@@ -1,14 +1,13 @@
 const express = require('express');
+const sequelize = require('./config/database');
+
 const app = express();
+const PORT = 3000;
 
-const PORT = process.env.PORT || 3000;
-
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('Hello Recipe App!');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+sequelize.authenticate()
+    .then(() => {console.log('✅ Database connected successfully.');
+        app.listen(PORT, () => {console.log(`🚀 Server running on http://localhost:${PORT}`);        
+        });
+    })
+    .catch((err) => {console.error('❌ Unable to connect to the database:', err);
+    });
