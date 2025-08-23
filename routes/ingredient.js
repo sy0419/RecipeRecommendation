@@ -1,5 +1,5 @@
 const express = require('express');  // 익스프레스 모듈 불러오기 Import Express module
-const Ingredient = require('../models/Ingredient');  // Ingredient 모델 불러오기 Import Ingredient model
+const Ingredient = require('../models/ingredient');  // Ingredient 모델 불러오기 Import Ingredient model
 
 const router = express.Router();  // 익스프레스 라우터 생성 Create Express router
 // GET / - 재료 목록 조회 API API to get list of ingredients
