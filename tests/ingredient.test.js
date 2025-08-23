@@ -58,6 +58,6 @@ describe('Ingredient API', () => {
     });
 
     afterAll(async () => {
-    await sequelize.close(); // 테스트 완료 후 DB 연결 종료 (Close DB connection after all tests finish)
+        await sequelize.close(); // 테스트 완료 후 DB 연결 종료 (Close DB connection after all tests finish)
     });
 });
