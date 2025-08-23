@@ -56,4 +56,8 @@ describe('Ingredient API', () => {
         expect(res.statusCode).toBe(400);                                  // 상태 코드 400 확인 (Check status code 400)
         expect(res.body).toHaveProperty('error');                          // 에러 메시지 포함 여부 확인 (Check if error message exists)
     });
+
+    afterAll(async () => {
+    await sequelize.close(); // 테스트 완료 후 DB 연결 종료 (Close DB connection after all tests finish)
+    });
 });
