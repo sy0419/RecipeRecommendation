@@ -1,6 +1,12 @@
 const request = require('supertest');  // supertest를 통해 HTTP 요청을 테스트 (Use supertest to test HTTP requests)
 const app = require('../app');         // app 모듈 불러오기 (Import app module)
 
+beforeEach(async () => {
+    // 모든 테스트 전에 'ingredients' 테이블을 초기화합니다.
+    // Clear the 'ingredients' table before each test to ensure a clean state.
+    await Ingredient.destroy({ where: {}, truncate: true });
+});
+
 describe('Ingredient API', () => {
     
     // GET /ingredient 요청이 배열을 반환하는지 테스트
