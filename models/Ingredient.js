@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const { model } = require('mongoose');
 
 const Ingredient = sequelize.define('ingredient', {
     id: {
