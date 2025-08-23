@@ -7,10 +7,9 @@ const sequelize = new Sequelize('database', 'username', 'password', {
   dialect: 'mysql',            // 사용할 데이터베이스 종류 (Database dialect, e.g., MySQL)
 });
 
-const Ingredient = require('./ingredient')(sequelize, Sequelize.DataTypes);
-// ingredient 모델을 sequelize 인스턴스와 함께 불러오기 (Import ingredient model with sequelize instance)
 
-// 다른 모델이 있으면 이곳에 추가 가능 (Add other models here if any)
+const Ingredient = require('./ingredient');
+Ingredient.initModel(sequelize);
 
 module.exports = {
   sequelize,  // sequelize 인스턴스 내보내기 (Export sequelize instance)
