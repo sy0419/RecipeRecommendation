@@ -1,11 +1,11 @@
 const request = require('supertest');  // supertest를 통해 HTTP 요청을 테스트 (Use supertest to test HTTP requests)
 const app = require('../app');         // app 모듈 불러오기 (Import app module)
-const { sequelize, Ingredient } = require('../models'); // Ingredient 모델을 불러옵니다. (Import the Ingredient model)
+const { sequelize,Ingredient } = require('../models'); // Ingredient 모델을 불러옵니다. (Import the Ingredient model)
 
 beforeEach(async () => {
     // 모든 테스트 전에 'ingredients' 테이블을 초기화합니다.
     // Clear the 'ingredients' table before each test to ensure a clean state.
-    await Ingredient.destroy({ where: {}, truncate: true });
+    await Ingredient.destroy({ where: {} });
 });
 
 describe('Ingredient API', () => {

@@ -5,7 +5,7 @@ const { sequelize, Ingredient, Recipe } = require('../models');
 // 모든 테스트 전에 DB 초기화 (테스트 격리 보장)
 // Before all tests, reset the database (ensure isolated testing)
 beforeAll(async () => {
-    await Ingredient.destroy({ where: {}, force: true });
+    await  Ingredient.destroy({ where: {}, force: true });
 });
 
 // 모든 테스트 후 DB 연결 종료
