@@ -57,7 +57,10 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const recipes = await Recipe.findAll({
-      include: Ingredient
+        include: {
+            model: Ingredient,
+            as: 'ingredients'
+        }
     });
     res.status(200).json(recipes);
   } catch (error) {
