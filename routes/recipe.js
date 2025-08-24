@@ -52,6 +52,20 @@ router.post('/', async (req, res) => {
     }
 });
 
+// 레시피 목록 조회 API - GET /recipe
+// Get list of all recipes - GET /recipe
+router.get('/', async (req, res) => {
+  try {
+    const recipes = await Recipe.findAll({
+      include: Ingredient
+    });
+    res.status(200).json(recipes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // 이 라우터 모듈을 외부에서 사용할 수 있도록 내보냄
 // Export the router to be used in app.js
 module.exports = router;    
