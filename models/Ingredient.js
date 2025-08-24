@@ -1,23 +1,23 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+// models/ingredient.js
 
-const Ingredient = sequelize.define('ingredient', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
+module.exports = (sequelize, DataTypes) => {
+  const Ingredient = sequelize.define('Ingredient', {
     name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
     },
     category: {
-        type: DataTypes.STRING,
-        allowNull: true
-    }
-}, {
-    timestamps: true
-});
+      type: DataTypes.STRING,
+    },
+  });
 
-module.exports = Ingredient;
+  Ingredient.associate = (models) => {
+    Ingredient.belongsToMany(models.Recipe, {
+      through: 'RecipeIngredient',
+      foreignKey: 'ingredientId',
+    });
+  };
+
+  return Ingredient;
+};

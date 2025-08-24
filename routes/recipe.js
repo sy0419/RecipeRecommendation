@@ -51,4 +51,4 @@ router.post('/', async (req, res) => {
 
 // 이 라우터 모듈을 외부에서 사용할 수 있도록 내보냄
 // Export the router to be used in app.js
-module.exports = router;
+module.exports = router;    
