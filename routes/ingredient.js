@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// POST / - 재료 추가 API (API to add a new ingredient
+// POST / - 재료 추가 API API to add a new ingredient
 router.post('/', async (req, res) => {
     try {
         const { name, category } = req.body;  // 요청 본문에서 name, category 추출 Extract name, category from request body
