@@ -34,7 +34,10 @@ router.post('/', async (req, res) => {
         // Reload recipe with associated ingredients
         const createdRecipe = await Recipe.findOne({
             where: { id: recipe.id },
-            include: Ingredient,
+            include: {
+                model: Ingredient,
+                as: 'ingredients'
+            }
         });
 
         // 201 Created 상태 코드와 함께 응답
