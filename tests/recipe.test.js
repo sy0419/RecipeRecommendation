@@ -34,6 +34,7 @@ describe('Recipe API', () => {
                 ingredients: [egg.id, onion.id] 
             });
 
+        console.log('Response:', response.statusCode, response.body);
         // Then: 응답 상태 코드 및 반환 데이터 확인
         // Check response status code and data
         expect(response.statusCode).toBe(201);
