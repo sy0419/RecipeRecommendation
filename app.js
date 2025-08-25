@@ -15,16 +15,19 @@ app.use('/recommend', recommendRouter);    // '/recommend' 경로에 라우터 �
 
 // DB 연결 및 동기화 (테스트할 때는 따로 실행할 수도 있지만, 우선 이렇게 둬도 OK)
 // Connect and sync DB (For tests, you might want to handle separately, but this is fine for now)
-// sequelize.authenticate()
-//   .then(() => {
-//     console.log('✅ Database connected successfully.');
-//     return sequelize.sync({ force: false });
-//   })
-//   .then(() => {
-//     console.log('🗃️ Tables synced successfully.');
-//   })
-//   .catch((err) => {
-//     console.error('❌ Unable to connect to the database:', err);
-//   });
+// 테스트 환경에서는 sync 하지 않음
+if (process.env.NODE_ENV !== 'test') {
+  sequelize.authenticate()
+    .then(() => {
+      console.log('✅ Database connected successfully.');
+      return sequelize.sync({ force: false });
+    })
+    .then(() => {
+      console.log('🗃️ Tables synced successfully.');
+    })
+    .catch((err) => {
+      console.error('❌ Unable to connect to the database:', err);
+    });
+}
 
 module.exports = app;  // app 모듈로 내보내기 Export app module for testing

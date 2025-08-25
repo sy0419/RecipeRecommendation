@@ -3,6 +3,8 @@ const app = require('../app');         // app 모듈 불러오기 (Import app mo
 const { sequelize,Ingredient } = require('../models'); // Ingredient 모델을 불러옵니다. (Import the Ingredient model)
 
 beforeAll(async () => {
+    // 테스트 전에 DB 스키마 초기화
+    await sequelize.sync({ force: true });
     // 모든 테스트 전에 'ingredients' 테이블을 초기화합니다.
     // Clear the 'ingredients' table before each test to ensure a clean state.
     await Ingredient.destroy({ where: {} });
