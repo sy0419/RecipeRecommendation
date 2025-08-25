@@ -2,10 +2,13 @@ const request = require('supertest');
 const app = require('../app');
 const { sequelize, Ingredient, Recipe } = require('../models');
 
-beforeAll(async () => {
+beforeEach(async () => {
     // 테스트 전에 DB 스키마 초기화
-    // Clear the database before each test to ensure a clean state. 
+    // Reset the database schema before each test to ensure test isolation
     await sequelize.sync({ force: true });
+})
+
+beforeAll(async () => {
     // 모든 테스트 전에 DB 초기화 (테스트 격리 보장)
     // Before all tests, reset the database (ensure isolated testing)
     await  Ingredient.destroy({ where: {}, force: true });
