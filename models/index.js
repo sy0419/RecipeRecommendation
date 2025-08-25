@@ -14,7 +14,7 @@ const sequelize = new Sequelize('recipe_db', 'root', '7203', {
 });
 
 const db = {}; // 모든 모델을 담을 객체
-// Object to store all Sequelize models
+// Object to store all Sequelize models 
 
 const basename = path.basename(__filename); // 현재 파일 이름 (index.js)
 
@@ -45,6 +45,18 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
+
+// 모델 간 관계 설정
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db); // associate 함수 실행
+  }
+});
+
+// DB와 연결을 시도하고 동기화
+sequelize.sync({ force: false })  // force: true로 설정하면 테이블을 재생성함
+  .then(() => console.log('Database synchronized'))
+  .catch(error => console.log('Error syncing database:', error));
 
 // ✅ 4. sequelize 인스턴스와 Sequelize 라이브러리를 db 객체에 포함시켜 export
 // ✅ Step 4: Add sequelize instance and Sequelize to db object and export it

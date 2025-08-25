@@ -9,14 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.TEXT,
     },
+  }, {
+    tableName: 'recipe'
   });
 
   Recipe.associate = (models) => {
     Recipe.belongsToMany(models.Ingredient, {
-      through: 'RecipeIngredient',
+      through: 'recipeingredient',
       foreignKey: 'recipeId',
-      otherKey: 'ingredientId',
-      as: 'ingredients'
+      otherKey: 'ingredientId'
     });
   };
 
