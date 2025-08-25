@@ -4,7 +4,7 @@ const { sequelize,Ingredient } = require('../models'); // Ingredient 모델을 �
 
 beforeAll(async () => {
     // 테스트 전에 DB 스키마 초기화
-    // Clear the database before each test to ensure a clean state. 
+    // Clear the database before each test to ensure a clean state.
     await sequelize.sync({ force: true });
     // 모든 테스트 전에 'ingredients' 테이블을 초기화합니다.
     // Clear the 'ingredients' table before each test to ensure a clean state.
