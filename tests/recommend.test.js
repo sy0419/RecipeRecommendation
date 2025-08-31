@@ -9,7 +9,6 @@ describe('POST /recommend', () => {
     // Setup test DB and create sample data before all tests run
     beforeAll(async () => {
         await sequelize.sync({ force: true }); // DB 초기화 (force: true = 기존 데이터 삭제)
-
         // 🥚 재료 생성 (Create ingredients)
         const egg = await Ingredient.create({ name: 'Egg', category: 'Protein' });
         const onion = await Ingredient.create({ name: 'Onion', category: 'Vegetable' });
