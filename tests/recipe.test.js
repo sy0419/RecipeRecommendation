@@ -3,9 +3,11 @@ const app = require('../app');
 const { sequelize, Ingredient, Recipe } = require('../models');
 
 beforeAll(async () => {
-    // 모든 테스트 전에 DB 초기화 (테스트 격리 보장)
-    // Before all tests, reset the database (ensure isolated testing)
-    await  Ingredient.destroy({ where: {}, force: true });
+  await sequelize.sync({ force: true });  // 테이블 초기화 및 생성
+});
+
+beforeEach(async () => {
+  await Ingredient.destroy({ where: {} });  // 테이블 비우기
 });
 
 // 모든 테스트 후 DB 연결 종료
