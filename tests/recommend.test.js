@@ -14,7 +14,7 @@ describe('POST /recommend', () => {
         const egg = await Ingredient.create({ name: 'Egg', category: 'Protein' });
         const onion = await Ingredient.create({ name: 'Onion', category: 'Vegetable' });
         const tomato = await Ingredient.create({ name: 'Tomato', category: 'Vegetable' });
-
+        
         // 🍳 레시피 생성 및 재료 연결 (Create recipes and associate ingredients)
         const r1 = await Recipe.create({ title: 'Omelette', description: 'Egg and onion omelette.' });
         await r1.addIngredients([egg, onion]); // Omelette는 Egg, Onion 포함
