@@ -2,15 +2,16 @@ const fs = require('fs');               // 파일 시스템 모듈 불러오기
 const path = require('path');           // 경로 관련 유틸 모듈 불러오기
 const Sequelize = require('sequelize'); // Sequelize ORM 라이브러리 불러오기
 
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
-
-const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  config
-);
+// ✅ 1. Sequelize 인스턴스 생성 - MySQL 연결
+// ✅ Step 1: Create Sequelize instance to connect to MySQL
+const sequelize = new Sequelize('recipe_db', 'root', '7203', {
+  host: 'localhost',           // DB 호스트 주소 설정
+  dialect: 'mysql',            // 사용할 DB 종류 설정
+  dialectOptions: {            // 문자 인코딩 옵션 설정
+    charset: 'utf8mb4',        // 유니코드 이모지까지 지원하는 인코딩
+  },
+  logging: console.log         // 실행되는 SQL 쿼리 로그 출력
+});
 
 const db = {}; // 모든 모델을 담을 객체
 // Object to store all Sequelize models 
