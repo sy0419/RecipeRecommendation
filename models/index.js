@@ -46,13 +46,6 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-// 모델 간 관계 설정
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db); // associate 함수 실행
-  }
-});
-
 // DB와 연결을 시도하고 동기화
 sequelize.sync({ force: false })  // force: true로 설정하면 테이블을 재생성함
   .then(() => console.log('Database synchronized'))
