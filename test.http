@@ -1,0 +1,26 @@
+### 모든 재료 조회
+GET http://localhost:3000/ingredient
+Accept: application/json
+
+### 새 재료 추가
+POST http://localhost:3000/ingredient
+Content-Type: application/json
+
+{
+  "name": "Cucumble",
+  "category": "Vegetable"
+}
+
+### 모든 레시피 조회
+GET http://localhost:3000/recipe
+Accept: application/json
+
+### 새 레시피 추가
+POST http://localhost:3000/recipe
+Content-Type: application/json
+
+{
+  "title": "Carrot Soup",
+  "description": "Delicious carrot soup",
+  "ingredients": [1, 2]  // 실제 ingredient id로 변경 필요
+}
