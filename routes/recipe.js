@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-// 모델 불러오기 (오타 수정: recipe → require)
-// Import models (Fix typo: recipe → require)
+// 모델 불러오기 (recipe → require 수정 완료)
+// Import models (Fixed typo: recipe → require)
 const { Recipe, Ingredient } = require('../models');
 
 // 레시피 생성 API - POST /recipe
@@ -68,6 +68,27 @@ router.post('/', async (req, res) => {
         console.error(error);
         return res.status(500).json({ message: 'Internal server error' });
     }
+});
+
+// 모든 레시피 조회 API - GET /recipe
+// Get all recipes API - GET /recipe
+router.get('/', async (req, res) => {
+  try {
+    // 레시피와 재료를 함께 조회
+    // Fetch recipes with their associated ingredients
+    const recipes = await Recipe.findAll({
+      include: {
+        model: Ingredient,
+        as: 'ingredients'
+      }
+    });
+    res.status(200).json(recipes);
+  } catch (error) {
+    // 에러 로그 출력 및 500 에러 반환
+    // Log error and return 500 status
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
 // 이 라우터 모듈을 외부에서 사용할 수 있도록 내보냄
